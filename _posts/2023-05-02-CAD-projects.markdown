@@ -2,7 +2,7 @@
 layout: post
 title:  "CAD Projects"
 date:   2023-05-02 21:50:41 -0400
-categories: CAD
+tags: [CAD, Computers]
 ---
 # Right Angle CV Joint
 

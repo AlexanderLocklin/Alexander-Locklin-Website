@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{%- assign _tag_name = page.tag -%}
+{%- assign _tagged_posts = site.tags[_tag_name] -%}
+
+{%- if _tagged_posts == nil -%}
+  {%- comment %} --- CASE 1: 0 POSTS --- {%- endcomment %}
+  {%- assign _posts = "" | split: "" -%}
+
+{%- elsif _tagged_posts.size == nil -%}
+  {%- comment %} --- CASE 2: 1 POST --- {%- endcomment %}
+  {%- comment %} It's a single object, not an array. Manually create an array. {%- endcomment %}
+  {%- assign _posts = "" | split: "" | push: _tagged_posts -%}
+
+{%- else -%}
+  {%- comment %} --- CASE 3: 2+ POSTS --- {%- endcomment %}
+  {%- comment %} It's an array. We can safely sort it. {%- endcomment %}
+  {%- assign _posts = _tagged_posts | sort: 'date' | reverse -%}
+{%- endif -%}
+
+{%- include header.html scrolly_nav=_posts -%}
+<div id="main">
+    {%- if page.content != "" -%}
+        {%- include section.html title=page.title photo=page.cover-photo photo-alt=page.cover-photo-alt auto-header=page.auto-header content=page.content -%}
+    {%- endif -%}
+        {%- for _post in _posts -%}
+        {%- capture _title -%}
+            <a href="{{- _post.url | absolute_url -}}">{{- _post.title -}}</a>
+        {%- endcapture -%}
+        {%- capture _subtitle -%}
+            {% if _post.author -%}{{- _post.author }} | {% endif %}
+            {{- _post.date | date_to_long_string -}}
+        {%- endcapture -%}
+        {%- capture _excerpt -%}<p>{{- _post.excerpt | strip_html | truncatewords: 100 -}}</p>{%- endcapture -%}
+        {%- capture _link -%}<a href="{{- _post.url | absolute_url -}}">read more</a>{%- endcapture -%}
+        {%- assign _content = _excerpt | append: _link -%}
+        {%- include section.html title=_title subtitle=_subtitle content=_content -%}
+    {%- endfor -%}
+</div>

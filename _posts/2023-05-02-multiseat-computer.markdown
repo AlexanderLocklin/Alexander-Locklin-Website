@@ -2,7 +2,7 @@
 layout: post
 title:  "Multiseat Computer"
 date:   2023-05-02 21:50:41 -0400
-categories: Computers
+tags: Computers
 ---
 
 Building computers can become very costly, so being able to split a computer for two users would reduce the cost of having to buy two seperate desktops. I discovered the program [Aster](https://www.ibik.ru/) which allows a single computer to be split into multiple users.

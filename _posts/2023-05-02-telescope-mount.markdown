@@ -2,7 +2,7 @@
 layout: post
 title:  "Astrophotography Mount"
 date:   2023-05-02 21:50:41 -0400
-categories: astronomy electronics making
+tags: [Astrophotography, Electronics]
 ---
 
 The astrophotography mount project is a project that I have started to improve the quality of my astrophotography images. The design of the mount is a barn door tracker.
